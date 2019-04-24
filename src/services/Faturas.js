@@ -10,7 +10,14 @@ export default{
 
     console.log(fatura);
     alert(fatura.nomeDaEmpresa);
-    http.post('/faturas/fatura', data=>{fatura});
+    return http.post('faturas/fatura',fatura).then(response => {
+      console.log(response);
+      if (response.statusText == 'OK') {
+          alert('salvo com sucesso!')
+      }
+    }).catch(function (error) {
+      console.log(error);
+    });
   }
 }
 

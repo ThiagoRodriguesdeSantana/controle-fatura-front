@@ -12,8 +12,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="fatura in faturas" :key="fatura.idFatura">
-        <td>{{fatura.idFatura}}</td>
+      <tr v-for="fatura in faturas" :key="fatura._id">
+        <td>{{fatura._id}}</td>
         <td>{{fatura.idUsuario}}</td>
         <td>{{fatura.nomeDaEmpresa}}</td>
         <td>{{fatura.valor}}</td>
@@ -37,7 +37,7 @@ export default {
   name: "ListaDeFaturas",
   methods: {
     Editar: function(fatura) {
-     alert(fatura.idFatura +' '+ fatura.nomeDaEmpresa)
+     alert(fatura._id +' '+ fatura.nomeDaEmpresa)
     },
     Remover: function(fatura){
       alert('Remover')
@@ -45,7 +45,6 @@ export default {
   },
   mounted(){
     Fatura.listar().then(resp=>{
-      console.log(resp.data)
       this.faturas = resp.data;
     })
   },

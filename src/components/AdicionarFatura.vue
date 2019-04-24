@@ -66,17 +66,15 @@ export default {
   name: "AdicionarFatura",
   methods: {
     salvar: function() {
-      Fatura.adicionar(this.fatura).then(resp=>{
-        alert('Salvo com sucesso!')
-      })
+      Fatura.adicionar(this.fatura);
+      
     }
   },
   data() {
     return {
       fatura: {
-        idFatura: '',
-        idUsuario: '',
-        nomeDaEmpresa: '',
+        idUsuario: "",
+        nomeDaEmpresa: "",
         valor: 0,
         dataDeVencimento: new Date(),
         pagou: false
