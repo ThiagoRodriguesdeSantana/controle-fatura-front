@@ -42,7 +42,9 @@ export default {
 
   remover: (id) =>{
     var url = 'faturas/'+id
-    return http.delete(url)
+    return http.delete(url).then(resp=>{
+      return http.get('faturas')
+    })
   }
 }
 

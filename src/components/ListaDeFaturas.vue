@@ -35,21 +35,19 @@
 import Fatura from '../services/Faturas.js'
 import router from '../router'
 
+
 export default {
   name: "ListaDeFaturas",
   methods: {
     Remover: function(fatura){
+
       if(confirm("Deseja remover linha selecionada?")){
-        Fatura.remover(fatura._id);
-        this.faturas = [];
-        this.listar();
+        Fatura.remover(fatura._id).then(resp=>{
+          console.log(resp)
+          this.faturas = resp.data
+        })
       }
     },
-    listar:function(){
-      Fatura.listar().then(resp=>{
-      this.faturas = resp.data;
-    })
-    }
   },
   mounted(){
     Fatura.listar().then(resp=>{
