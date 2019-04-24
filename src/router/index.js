@@ -13,7 +13,7 @@ export default new Router({
       component: ListaDeFaturas,
     },
     {
-      path: '/AdicionarFatura',
+      path: '/AdicionarFatura/0',
       name: 'AdicionarFatura',
       component: AdicionarFatura,
     },

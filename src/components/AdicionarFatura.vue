@@ -54,31 +54,59 @@
       <br>
       <br>
       <button type="submit" class="btn btn-primary">Salvar</button>
-      <button type="submit" class="btn btn-primary">Cancelar</button>
+       <router-link class="btn btn-primary" :to="{ name: 'ListaDeFaturas'}">Cancelar</router-link>
     </form>
   </div>
 </template>
 <script>
 /* eslint-disable */
 import Fatura from "../services/Faturas.js";
-import { error } from 'util';
+import { error } from "util";
+
+function objetoVazio() {
+  return {
+    idUsuario: "",
+    nomeDaEmpresa: "",
+    valor: 0,
+    dataDeVencimento: new Date(),
+    pagou: false
+  };
+}
+
 export default {
   name: "AdicionarFatura",
   methods: {
     salvar: function() {
-      Fatura.adicionar(this.fatura);
+      console.log(this.id);
       
+      if (this.id != 0) {
+        Fatura.editar(this.fatura);
+      } else {
+        Fatura.adicionar(this.fatura);
+      }
+    },
+  },
+  created() {
+    if(this.$route.params.id){
+       this.id = this.$route.params.id;
     }
+    else{
+       this.id = 0;
+    }
+    
+   
+  },
+  mounted() {
+    if (this.id != 0) {
+      Fatura.consultar(this.id).then(resp => {
+        this.fatura = resp.data;
+      });
+    } 
   },
   data() {
     return {
-      fatura: {
-        idUsuario: "",
-        nomeDaEmpresa: "",
-        valor: 0,
-        dataDeVencimento: new Date(),
-        pagou: false
-      }
+      fatura: objetoVazio(),
+      id: 0
     };
   }
 };

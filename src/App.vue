@@ -31,7 +31,7 @@ export default {
               title: 'Listar Faturas',
             },
             {
-              href: '/AdicionarFatura',
+              href: '/AdicionarFatura/0',
               title: 'Nova Fatura',
             },
           ],

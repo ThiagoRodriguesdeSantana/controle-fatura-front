@@ -20,7 +20,7 @@
         <td>{{fatura.dataDeVencimento}}</td>
         <td>{{fatura.pagou}}</td>
         <td>
-          <button class="btn btn-primary" v-on:click="Editar(fatura)">Editar</button>
+          <router-link class="btn btn-primary" :to="{ name: 'AdicionarFatura', params: { id: fatura._id } }">Editar</router-link>
         </td>
          <td>
           <button class="btn btn-danger" v-on:click="Remover(fatura)">Remover</button>
@@ -33,14 +33,22 @@
 <script>
 /* eslint-disable */
 import Fatura from '../services/Faturas.js'
+import router from '../router'
+
 export default {
   name: "ListaDeFaturas",
   methods: {
-    Editar: function(fatura) {
-     alert(fatura._id +' '+ fatura.nomeDaEmpresa)
-    },
     Remover: function(fatura){
-      alert('Remover')
+      if(confirm("Deseja remover linha selecionada?")){
+        Fatura.remover(fatura._id);
+        this.faturas = [];
+        this.listar();
+      }
+    },
+    listar:function(){
+      Fatura.listar().then(resp=>{
+      this.faturas = resp.data;
+    })
     }
   },
   mounted(){
