@@ -23,7 +23,7 @@
           <td>{{fatura.idUsuario}}</td>
           <td>{{fatura.nomeDaEmpresa}}</td>
           <td>{{fatura.valor}}</td>
-          <td>{{fatura.dataDeVencimento | moment("DD/MM/YYYY,h:mm:ss a")}}</td>
+          <td>{{fatura.dataDeVencimento | moment('DD/MM/YYYY')}}</td>
           <td>{{fatura.pagou? 'Pagou' : 'Não Pagou'}}</td>
           <td>
             <router-link

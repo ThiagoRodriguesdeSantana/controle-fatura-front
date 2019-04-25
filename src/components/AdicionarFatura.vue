@@ -68,7 +68,7 @@ function objetoVazio() {
     idUsuario: "",
     nomeDaEmpresa: "",
     valor: 0,
-    dataDeVencimento: new Date(),
+    dataDeVencimento:"",
     pagou: false
   };
 }
